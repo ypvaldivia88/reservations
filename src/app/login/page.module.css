@@ -1,0 +1,36 @@
+/* page.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://source.unsplash.com/random?manicure,hair');
+    background-size: cover;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    color: #0070f3;
+}
+
+.form input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-left: 10px;
+}
+
+.form button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #0070f3;
+    color: white;
+    cursor: pointer;
+}
