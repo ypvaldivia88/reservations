@@ -1,19 +1,11 @@
 "use client";
-import { useEffect } from 'react';
-import { redirect } from 'next/navigation'
+import { SessionProvider } from "next-auth/react";
+import Turnos from "@/pages/turnos";
 
 export default function Index() {
-  const isAuthenticated = false;
-
-  useEffect(() => {
-    // Replace this with your actual authentication check
-
-    if (isAuthenticated) {
-      redirect('/home');
-    } else {
-      redirect('/login');
-    }
-  }, [isAuthenticated]);
-
-  return null;
+  return (
+    <SessionProvider>
+      <Turnos />
+    </SessionProvider>
+  );
 }

@@ -1,39 +1,60 @@
-"use client";
-import { useState, FormEvent, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation'
+// src/pages/login.tsx
+import { useState, ChangeEvent, FormEvent } from "react";
 import styles from "@/styles/Login.module.css";
+import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
-const Login: React.FC = () => {
-  
-
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+export default function Login() {
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
   const router = useRouter();
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Here you would typically make a POST request to your API to authenticate the user
-    // After successful authentication, you might want to redirect the user to the home page
-    router.push('/home');
+    setError("");
+
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: form.email,
+      password: form.password,
+    });
+
+    if (res?.error) {
+      setError(res.error);
+    } else {
+      router.push("/");
+    }
   };
 
   return (
     <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <label>
-          Usuario:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        </label>
-        <label>
-          Contraseña:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <button type="submit">Acceder</button>
-        <a href="/register">Registrarse</a>
+      <h1 className={styles.title}>Login</h1>
+      {error && <p className={styles.error}>{error}</p>}
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+          className={styles.input}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={form.password}
+          onChange={handleChange}
+          className={styles.input}
+        />
+        <button type="submit" className={styles.button}>
+          Login
+        </button>
       </form>
-  </div>
+    </div>
   );
 }
-
-export default Login;

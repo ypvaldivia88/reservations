@@ -1,14 +1,17 @@
-/* src/styles/Register.module.css */
+/* styles/Register.module.css */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://source.unsplash.com/random/1920x1080?manicure,salon,feminine');    
+    background-size: cover;
 }
 
 .title {
     text-align: center;
-    color: #333;
+    color: #0070f3;
 }
 
 .form {

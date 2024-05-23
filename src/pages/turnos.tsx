@@ -10,7 +10,7 @@ interface Turno {
   hora: string;
 }
 
-export default function Home() {
+export default function Turnos() {
   const [turnos, setTurnos] = useState<Turno[]>([]);
   const [form, setForm] = useState({ nombreCliente: '', servicio: '', fecha: '', hora: '' });
 
