@@ -22,14 +22,15 @@ const Login: React.FC = () => {
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label>
-          Username:
+          Usuario:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
         <label>
-          Password:
+          Contraseña:
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
-        <button type="submit">Login</button>
+        <button type="submit">Acceder</button>
+        <a href="/register">Registrarse</a>
       </form>
   </div>
   );
