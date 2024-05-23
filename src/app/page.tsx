@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { redirect } from 'next/navigation'
 
 export default function Index() {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   useEffect(() => {
     // Replace this with your actual authentication check

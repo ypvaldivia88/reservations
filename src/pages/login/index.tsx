@@ -1,21 +1,21 @@
 "use client";
 import { useState, FormEvent, useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
-import styles from "./page.module.css";
+import { useRouter } from 'next/navigation'
+import styles from "@/styles/Login.module.css";
 
 const Login: React.FC = () => {
   
 
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  // const router = useRouter();
+  const router = useRouter();
 
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     // Here you would typically make a POST request to your API to authenticate the user
     // After successful authentication, you might want to redirect the user to the home page
-    // router.push('/home');
+    router.push('/home');
   };
 
   return (

@@ -1,17 +1,18 @@
-// pages/register.tsx
+"use client";
 import { useState, FormEvent } from 'react';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const Register: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     // Here you would typically make a POST request to your API to register the user
     // After successful registration, you might want to redirect the user to the login page
-    redirect('/login');
+    router.push('/login');
   };
 
   return (

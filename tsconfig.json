@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/_document.js",
-    "src/lib/ongodb.js"
+    "src/lib/mongodb.js"
   ],
   "exclude": [
     "node_modules"
