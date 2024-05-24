@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import styles from '@/styles/Home.module.css';
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import styles from "@/styles/Home.module.css";
 
-interface Turno {
+interface Appointment {
   _id: string;
   nombreCliente: string;
   servicio: string;
@@ -10,14 +10,19 @@ interface Turno {
   hora: string;
 }
 
-export default function Turnos() {
-  const [turnos, setTurnos] = useState<Turno[]>([]);
-  const [form, setForm] = useState({ nombreCliente: '', servicio: '', fecha: '', hora: '' });
+export default function Appointments() {
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [form, setForm] = useState({
+    nombreCliente: "",
+    servicio: "",
+    fecha: "",
+    hora: "",
+  });
 
   useEffect(() => {
-    fetch('/api/turnos')
+    fetch("/api/appointments")
       .then((res) => res.json())
-      .then((data) => setTurnos(data.data));
+      .then((data) => setAppointments(data.data));
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,16 +32,16 @@ export default function Turnos() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/turnos', {
-        method: 'POST',
+      const res = await fetch("/api/appointments", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(form),
       });
       const data = await res.json();
-      setTurnos([...turnos, data.data]);
-      setForm({ nombreCliente: '', servicio: '', fecha: '', hora: '' });
+      setAppointments([...appointments, data.data]);
+      setForm({ nombreCliente: "", servicio: "", fecha: "", hora: "" });
     } catch (error) {
       console.error(error);
     }
@@ -44,7 +49,7 @@ export default function Turnos() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Gestión de Turnos</h1>
+      <h1 className={styles.title}>Gestión de Appointments</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input
           type="text"
@@ -78,12 +83,15 @@ export default function Turnos() {
           onChange={handleChange}
           className={styles.input}
         />
-        <button type="submit" className={styles.button}>Agregar Turno</button>
+        <button type="submit" className={styles.button}>
+          Agregar Appointment
+        </button>
       </form>
       <ul className={styles.list}>
-        {turnos.map((turno) => (
-          <li key={turno._id} className={styles.listItem}>
-            {turno.nombreCliente} - {turno.servicio} - {turno.fecha} - {turno.hora}
+        {appointments.map((appointment) => (
+          <li key={appointment._id} className={styles.listItem}>
+            {appointment.nombreCliente} - {appointment.servicio} -{" "}
+            {appointment.fecha} - {appointment.hora}
           </li>
         ))}
       </ul>

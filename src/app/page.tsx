@@ -1,11 +1,11 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
-import Turnos from "@/pages/turnos";
+import Appointments from "@/pages/appointments";
 
 export default function Index() {
   return (
     <SessionProvider>
-      <Turnos />
+      <Appointments />
     </SessionProvider>
   );
 }
